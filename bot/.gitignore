@@ -1,0 +1,8 @@
+js/
+__pycache__/
+files/
+img/
+.vscode/
+.gitattributes
+test.py
+config.py

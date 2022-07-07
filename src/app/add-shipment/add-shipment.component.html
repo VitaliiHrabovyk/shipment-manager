@@ -1,0 +1,71 @@
+<article class="message is-success" *ngIf="crud.createShipmetnSuccess">
+  <div class="message-header">
+    <p>Success</p>
+  </div>
+  <div class="message-body">
+    Shipment  is successfully created.
+  </div>
+</article>
+
+<article class="message is-danger" *ngIf="crud.createShipmetnFailure">
+  <div class="message-header">
+    <p>Faile</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+Failure create. Look at the console for the reason </div>
+</article>
+
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field">
+        <label class="label">Shipment #</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Shipment ID" formControlName="shipment">
+        </div>
+      </div>
+
+      <div class="control">
+        <div class="select">
+          <select formControlName="loadPoint">
+            <option>Choose loading Point</option>
+            <option *ngFor="let item of pointsList">{{item.PointName}}</option>
+          </select>
+        </div>
+
+        <div class="select">
+            <select formControlName="upLoadPoint">
+              <option>Choose upoading Point</option>
+              <option *ngFor="let item of pointsList">{{item.PointName}}</option>
+            </select>
+          </div>
+      </div>
+
+      <br>
+      <div class="field">
+        <div class="tags are-medium">
+          <span style="width: 50%;"><label class="label">Loading Date/Time</label></span>
+          <span style="width: 50%;"><label class="label">Uploading Date/Time</label></span>
+        </div>        
+
+          <input class="input" style="width: 25%;" type="date" placeholder="Text input" formControlName="loadDate">
+          <input class="input" style="width: 25%;" type="time" placeholder="Text input" formControlName="loadTime">
+          <input class="input" style="width: 25%;" type="date" placeholder="Text input" formControlName="uploadDate">
+          <input class="input" style="width: 25%;" type="time" placeholder="Text input" formControlName="uploadTime">
+        </div>
+      
+
+
+        <label class="label">Comment for driver</label>
+          <textarea class="textarea" placeholder="Some Comment" formControlName="comment"></textarea> 
+
+      <br>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" type="submit" [disabled]="form.invalid || submitted">Create</button>
+        </div>
+        <div class="control">
+          <button type="button" class="button is-link is-light" (click)="router.navigate(['/'])">Cancel</button>
+        </div>
+      </div>
+</form>

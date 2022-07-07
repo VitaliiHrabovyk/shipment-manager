@@ -1,0 +1,73 @@
+<article class="message is-success" *ngIf="crud.createPointSuccess">
+  <div class="message-header">
+    <p>Success</p>
+  </div>
+  <div class="message-body">
+    Point is successfully created.
+  </div>
+</article>
+
+<article class="message is-danger" *ngIf="crud.createPointFailure">
+  <div class="message-header">
+    <p>Faile. Look at the console for the reason</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+Failure create  </div>
+</article>
+
+
+<form [formGroup]="form" class="box" (ngSubmit)="submit()">
+<div class="field" >
+    <label class="label">Point Name</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Point Name" formControlName="PointName">
+    </div>
+    <article class="message is-danger" *ngIf="form.get('PointName')?.dirty || form.get('PointName')?.touched">
+      <div class="message-body" *ngIf="form.get('PointName')?.errors?.['required']">
+        Name of point is required
+      </div>
+    </article>
+  </div>
+<div class="field">
+    <label class="label">Adress</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Adress" formControlName="Adress" [(ngModel)]="adress">
+    </div>
+    <article class="message is-danger" *ngIf="form.get('Adress')?.dirty || form.get('Adress')?.touched">
+      <div class="message-body"  *ngIf="form.get('Adress')?.errors?.['required']">
+        Adress is required
+      </div>
+    </article>
+
+  </div>
+<div class="field">
+    <label class="label">Coordinates</label>
+    <div class="control">
+      <input class="input"  [ngClass]="{'is-danger':form.get('Coordinates')?.errors?.['pattern']}"
+      [(ngModel)]="coordinates" type="text"  placeholder="Coordinates"  formControlName="Coordinates" >
+    </div>
+    <p class="help">Indicate a point on the map (duble click) or enter coordinates manualy</p>
+   
+    <article class="message is-danger" *ngIf="form.get('Coordinates')?.dirty || form.get('Coordinates')?.touched">
+        <div class="message-body" *ngIf="form.get('Coordinates')?.errors?.['required']">
+          Coordinates is required
+        </div>
+        <div class="message-body" *ngIf="form.get('Coordinates')?.errors?.['pattern']">
+          Not correct coordinates
+      </div>
+      </article>
+        
+  </div>
+  <app-map [coordinates]="coordinates" (pointCoordinates)='pointCoordinates($event)'></app-map>
+  <br>
+  <div class="field">
+    <p class="control">
+      <button class="button is-success" type="submit" [disabled]="form.invalid || submitted">
+        Create
+      </button>
+    </p>
+  </div>
+</form>
+
+

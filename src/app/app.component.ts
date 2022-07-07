@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './shared/auth.service';
+import { CrudService } from './shared/crud.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngDrivers';
+
+  constructor(public auth:AuthService){
+
+  }
+ 
+  isActiveNavBarBurger = false;
+
+  BarBurgerToggle(){
+    this.isActiveNavBarBurger = !this.isActiveNavBarBurger;
+  }
+
+
+
 }

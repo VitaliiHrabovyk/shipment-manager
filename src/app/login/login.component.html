@@ -1,0 +1,38 @@
+<form [formGroup]="form" class="box" (ngSubmit)="submit()">
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input" [ngClass]="{'is-danger':form.invalid}" type="email" placeholder="admin@admin.com" formControlName="email">
+        <div *ngIf="form.get('email')?.dirty || form.get('email')?.touched" class="validation">
+          <small *ngIf="form.get('email')?.invalid ">Enter valid email. </small>
+          <small *ngIf="form.get('email')?.errors?.['required']">Email is required</small><br>
+      </div>
+
+      </div>
+    </div>
+  
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <input class="input" [ngClass]="{'is-danger':form.invalid}" type="password" placeholder="********" formControlName="password">
+        <div *ngIf="form.get('password')?.dirty || form.get('password')?.touched" class="validation">
+          <small *ngIf="form.get('password')?.errors?.['minlength']">
+              Password too shirt. Required length- {{form.get('password')?.errors?.['minlength'].requiredLength}} 
+              Current length - {{form.get('password')?.errors?.['minlength'].actualLength}} 
+          </small>
+          <small *ngIf="form.get('password')?.errors?.['required']">Password is required</small><br>
+      </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="auth.noResponse" class="notification is-danger">
+      <button class="delete" type="button" (click)="auth.noResponse = null"></button>
+      Authorization failed. Please check your login/password pair and try again.
+    </div>
+
+  
+    <button class="button is-primary has-text-weight-bold" id="submit-button" type="submit" [disabled]="form.invalid">Sign in</button>
+    
+
+  </form>

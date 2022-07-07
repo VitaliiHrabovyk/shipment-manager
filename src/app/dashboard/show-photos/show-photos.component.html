@@ -1,0 +1,6 @@
+<div class="wrap">
+    <div class="notification is-info is-light is-centered">
+        <button class="delete" (click)="skip_()"></button>
+        <img *ngFor="let item of crud.getPhotosRes" width="100%" [src]="'data:image/jpeg;base64,'+item.file | safeHtml" alt="">
+    </div>
+</div>
