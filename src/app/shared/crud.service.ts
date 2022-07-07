@@ -13,29 +13,29 @@ export class CrudService {
 
   getUsersMethod(){
     // return this.http.get('assets/test.json');
-    return this.http.get('http://localhost:85/php/users-json.php');
+    return this.http.get('http://localhost:85/ngDrivers/php/users-json.php');
     
   }
   getShipmentsMethod(){
     // return this.http.get('assets/test.json');
-    return this.http.get('http://localhost:85/php/Shipments-json.php');
+    return this.http.get('http://localhost:85/ngDrivers/php/Shipments-json.php');
     
   }
   getFilesMethod(){
     // return this.http.get('assets/test.json');
-    return this.http.get('http://localhost:85/php/files-json.php');
+    return this.http.get('http://localhost:85/ngDrivers/php/files-json.php');
     
   }
 
   getPointsMethod(){
     // return this.http.get('assets/test.json');
-    return this.http.get('http://localhost:85/php/points-json.php');
+    return this.http.get('http://localhost:85/ngDrivers/php/points-json.php');
     
   }
   createPointSuccess = false;
   createPointFailure = false;
   CreatePoint(point:any) {
-    return this.http.post("http://localhost:85/php/createpoint.php", point).subscribe(res => {
+    return this.http.post("http://localhost:85/ngDrivers/php/createpoint.php", point).subscribe(res => {
     if (res){
       this.createPointSuccess = true;
     }
@@ -48,7 +48,7 @@ export class CrudService {
   createShipmetnSuccess = false;
   createShipmetnFailure = false;
   CreateSipment(shipment:any) {
-    return this.http.post("http://localhost:85/php/createshipment.php", shipment).subscribe(res => {
+    return this.http.post("http://localhost:85/ngDrivers/php/createshipment.php", shipment).subscribe(res => {
     console.log(res);
     if (res){
       this.createShipmetnSuccess = true;
@@ -62,7 +62,7 @@ export class CrudService {
   appointSucsess= false
   appointFailure= false
   Appoint(driver:any) {
-    return this.http.post("http://localhost:85/php/appoint.php", driver).subscribe(res => {
+    return this.http.post("http://localhost:85/ngDrivers/php/appoint.php", driver).subscribe(res => {
     console.log(res);
     if (res){
       this.appointSucsess = true;
@@ -75,7 +75,7 @@ export class CrudService {
 
   getPhotosRes:any
   getPhotos(shipment:any) {
-    this.http.post("http://localhost:85/php/photos-json.php", shipment).subscribe(res => {
+    this.http.post("http://localhost:85/ngDrivers/php/photos-json.php", shipment).subscribe(res => {
     this.getPhotosRes = res;
     console.log(res);
     
